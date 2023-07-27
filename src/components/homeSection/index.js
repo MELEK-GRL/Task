@@ -11,15 +11,18 @@ function Section() {
   const [search, setSearch] = useState("");
   useEffect(() => {
     const getData = async () => {
-      const data = await axios.get(
-        "http://hapi.fhir.org/baseR4/metadata?_pretty=true"
-      );
-      setFetchedData(data);
+      try {
+        const data = await axios.get(
+          "http://hapi.fhir.org/baseR4/metadata?_pretty=true"
+        );
+
+        setFetchedData(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
   }, []);
-
-
 
   return (
     <div className="flex w-full justify-between min-h-[610px] p-2 flex-col gap-4">
@@ -28,7 +31,6 @@ function Section() {
         <Tables fetchedData={fetchedData} search={search} />
         <Card fetchedData={fetchedData} search={search} />
       </div>
-    
     </div>
   );
 }
