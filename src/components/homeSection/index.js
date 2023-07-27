@@ -5,7 +5,7 @@ import React from "react";
 import Tables from "../table";
 import Search from "../search";
 import Card from "../card";
-
+import { getPosts } from "../../services/post";
 function Section() {
   const [fetchedData, setFetchedData] = useState([]);
   const [search, setSearch] = useState("");
@@ -23,6 +23,8 @@ function Section() {
     };
     getData();
   }, []);
+
+
 
   return (
     <div className="flex w-full justify-between min-h-[610px] p-2 flex-col gap-4">
